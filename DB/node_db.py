@@ -45,7 +45,6 @@ for node in nodes:
         neighbour_num = int(input("Enter neighbour num  : "))
         cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
         neighbour_id = "node"+str(neighbour_num)
-        = 
         node.neighbours.append((neighbour_id,cost))
     add_node(node)
 
