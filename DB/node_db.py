@@ -48,3 +48,18 @@ for node in nodes:
         = 
         node.neighbours.append((neighbour_id,cost))
     add_node(node)
+
+def get_data_all()->List:
+    try :
+        cnt = sqlite3.connect(database)
+        cur = cnt.cursor()     
+        cur = cur.execute("select * from floor1;")
+        vals = cur.fetchall()
+        return vals
+
+    except sqlite3.Error as error:
+        print("sqlite error : ",error)
+
+    finally:
+        if cnt:
+            cnt.close()
