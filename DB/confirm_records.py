@@ -11,7 +11,8 @@ try :
     cur = cnt.cursor()     
     cur = cur.execute("select * from floor1;")
     vals = cur.fetchall()
-    print(vals)
+    for record in vals:
+        print(record)
 
 except sqlite3.error as error:
     print("sqlite error : ",error)
