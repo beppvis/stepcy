@@ -53,23 +53,12 @@ def add_node(node: Node):
 #     print(node.id +" connectections : ")
 #     neighour_nums = int(input("Enter num of neighbour connections : "))
 
-<<<<<<< HEAD
-    for i in range(1,neighour_nums + 1):
-        neighbour_num = int(input("Enter neighbour num  : "))
-        cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
-        neighbour_id = "node"+str(neighbour_num)
-        = 
-        node.neighbours.append((neighbour_id,cost))
-    add_node(node)
->>>>>>> de0959bf1affb6b3184a02655d7af3829b2a3167
-=======
 #     for i in range(1,neighour_nums + 1):
 #         neighbour_num = int(input("Enter neighbour num  : "))
 #         cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
 #         neighbour_id = "node"+str(neighbour_num)
 #         node.neighbours.append((neighbour_id,cost))
 #     add_node(node)
->>>>>>> 6bcfb33 (Json to SQL and)
 
 def get_data_all():
     try :
@@ -83,9 +72,9 @@ def get_data_all():
             neighbour_data = json.loads(row[1])
             neighbours = []
             # TODO :vals are not used currenlty need to be implemented
-            for (key,vals) in neighbour_data.items():
+            for (key,val) in neighbour_data.items():
                 n_data = {}
-                n_data[key] = vals["cost"]
+                n_data[key] = val
                 neighbours.append(n_data)
             data.append((node_id,neighbours))
         return data

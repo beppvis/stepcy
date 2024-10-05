@@ -31,6 +31,7 @@ nx.draw_networkx_edges(G,pos)
 nx.draw_networkx_labels(G,pos)
 print(nx.shortest_path(G,nodea,nodeb,'weight'))
 ply.show()'''
+
 import networkx as nx
 import matplotlib.pyplot as ply
 import node_db
