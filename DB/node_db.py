@@ -1,25 +1,11 @@
 import sqlite3
 import json
-
-class Node:
-    def __init__(self, id):
-        self.id = id
-        self.neighbours = []  # To store tuples of (neighbour_id, cost)
-        self.classroom_info = {}  # Initialize classroom_info as an empty dictionary
-
+from classes_node import Node 
+from classes_node import Neighbour
 
 database = "../map.db"
-query = "create table"
-table_name = "AB1floor1"
-query = "create table "+table_name+";"
+table_name = "floor1"
 
-
-cnt = sqlite3.connect(database)
-cur = cnt.cursor()
-cur.execute("create table AB1floor1")
-cur.close()
-cnt.commit()
-cnt.close()
 
 # Assumes table created
 def add_node(node: Node):
@@ -55,30 +41,38 @@ def add_node(node: Node):
             cnt.commit()
             cnt.close()
 
-
-# Example of creating nodes and adding them to the database
-N = int(input("Enter number of nodes: "))
+N = int(input("Enter no of nodes : "))
 nodes = []
 
-for i in range(1, N + 1):
-    nodeID = "node" + str(i)
-    node = Node(nodeID)
+for i in range(1,N+1):
+    nodeID = "node"+str(i)
+    node = Node(nodeID)     
     nodes.append(node)
 
-    print(node.id + " connections:")
-    neighbour_count = int(input("Enter number of neighbour connections: "))
+for node in nodes:
+    print(node.id +" connectections : ")
+    neighour_nums = int(input("Enter num of neighbour connections : "))
 
-    for j in range(1, neighbour_count + 1):
-        neighbour_num = int(input("Enter neighbour number: "))
-        cost = int(input(f"Enter cost to neighbour {node.id} to node{neighbour_num}: "))
-        neighbour_id = "node" + str(neighbour_num)
-        node.neighbours.append((neighbour_id, cost))
-
-        # Ask for classroom information between this node and its neighbor
-        classroom_info = json.loads(input(f"Enter classroom information (as JSON) between {node.id} and {neighbour_id}: "))
-
-        # Store classroom information for this specific neighbor
-        node.classroom_info[neighbour_id] = classroom_info
-
-    # Add node to the database
+    for i in range(1,neighour_nums + 1):
+        neighbour_num = int(input("Enter neighbour num  : "))
+        cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
+        neighbour_id = "node"+str(neighbour_num)
+        = 
+        node.neighbours.append((neighbour_id,cost))
     add_node(node)
+>>>>>>> de0959bf1affb6b3184a02655d7af3829b2a3167
+
+def get_data_all():
+    try :
+        cnt = sqlite3.connect(database)
+        cur = cnt.cursor()     
+        cur = cur.execute("select * from floor1;")
+        vals = cur.fetchall()
+        return vals
+
+    except sqlite3.Error as error:
+        print("sqlite error : ",error)
+
+    finally:
+        if cnt:
+            cnt.close()
