@@ -1,9 +1,10 @@
 import sqlite3
 import json
+from pathlib import Path
 from classes_node import Node 
 from classes_node import Neighbour
-
-database = "../map.db"
+p = Path(__file__).parents[1]
+database = str(p) + "/map.db"
 table_name = "floor1"
 
 
@@ -29,27 +30,26 @@ def add_node(node:Node):
             cnt.commit()
             cnt.close()
 
-N = int(input("Enter no of nodes : "))
-nodes = []
+#N = int(input("Enter no of nodes : "))
+#nodes = []
 
-for i in range(1,N+1):
-    nodeID = "node"+str(i)
-    node = Node(nodeID)     
-    nodes.append(node)
+#for i in range(1,N+1):
+#    nodeID = "node"+str(i)
+#    node = Node(nodeID)     
+#    nodes.append(node)
 
-for node in nodes:
-    print(node.id +" connectections : ")
-    neighour_nums = int(input("Enter num of neighbour connections : "))
+#for node in nodes:
+#    print(node.id +" connectections : ")
+#   neighour_nums = int(input("Enter num of neighbour connections : "))
 
-    for i in range(1,neighour_nums + 1):
-        neighbour_num = int(input("Enter neighbour num  : "))
-        cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
-        neighbour_id = "node"+str(neighbour_num)
-        = 
-        node.neighbours.append((neighbour_id,cost))
-    add_node(node)
+#    for i in range(1,neighour_nums + 1):
+#        neighbour_num = int(input("Enter neighbour num  : "))
+#        cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
+#        neighbour_id = "node"+str(neighbour_num)
+#        node.neighbours.append((neighbour_id,cost))
+#    add_node(node)
 
-def get_data_all()->List:
+def get_data_all():
     try :
         cnt = sqlite3.connect(database)
         cur = cnt.cursor()     
