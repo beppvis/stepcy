@@ -157,4 +157,3 @@ def create_table(table_name : str,database_path:str):
             cnt.commit()
             cnt.close()
 
-# create_table(table_name,database)
