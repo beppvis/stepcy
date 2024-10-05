@@ -41,18 +41,19 @@ def add_node(node: Node):
             cnt.commit()
             cnt.close()
 
-N = int(input("Enter no of nodes : "))
-nodes = []
+# N = int(input("Enter no of nodes : "))
+# nodes = []
 
-for i in range(1,N+1):
-    nodeID = "node"+str(i)
-    node = Node(nodeID)     
-    nodes.append(node)
+# for i in range(1,N+1):
+#     nodeID = "node"+str(i)
+#     node = Node(nodeID)     
+#     nodes.append(node)
 
-for node in nodes:
-    print(node.id +" connectections : ")
-    neighour_nums = int(input("Enter num of neighbour connections : "))
+# for node in nodes:
+#     print(node.id +" connectections : ")
+#     neighour_nums = int(input("Enter num of neighbour connections : "))
 
+<<<<<<< HEAD
     for i in range(1,neighour_nums + 1):
         neighbour_num = int(input("Enter neighbour num  : "))
         cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
@@ -61,6 +62,14 @@ for node in nodes:
         node.neighbours.append((neighbour_id,cost))
     add_node(node)
 >>>>>>> de0959bf1affb6b3184a02655d7af3829b2a3167
+=======
+#     for i in range(1,neighour_nums + 1):
+#         neighbour_num = int(input("Enter neighbour num  : "))
+#         cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
+#         neighbour_id = "node"+str(neighbour_num)
+#         node.neighbours.append((neighbour_id,cost))
+#     add_node(node)
+>>>>>>> 6bcfb33 (Json to SQL and)
 
 def get_data_all():
     try :
@@ -68,7 +77,18 @@ def get_data_all():
         cur = cnt.cursor()     
         cur = cur.execute("select * from floor1;")
         vals = cur.fetchall()
-        return vals
+        data = []
+        for row in vals:
+            node_id = row[0]
+            neighbour_data = json.loads(row[1])
+            neighbours = []
+            # TODO :vals are not used currenlty need to be implemented
+            for (key,vals) in neighbour_data.items():
+                n_data = {}
+                n_data[key] = vals["cost"]
+                neighbours.append(n_data)
+            data.append((node_id,neighbours))
+        return data
 
     except sqlite3.Error as error:
         print("sqlite error : ",error)
@@ -76,3 +96,65 @@ def get_data_all():
     finally:
         if cnt:
             cnt.close()
+
+# To create a base template for easy addition
+def gen_json_file():
+    f = open("floor1.json","w")
+    N = int(input("Num of nodes : "))
+    floor_dict = {}
+    i = 1
+
+    while i <= N:
+        node_id = "node" + str(i)
+        floor_dict[node_id]={}
+        floor_dict[node_id]["neighbours"]={}
+        n = int(input("Enter no of neighbours : "))
+        for x in range(1,1+n):
+            y = int(input("Enter neighbour : "))
+            neighbour_id = "node"+ str(y)
+            floor_dict[node_id]["neighbours"][neighbour_id] ={}
+            floor_dict[node_id]["neighbours"][neighbour_id]["cost"] = 0
+            floor_dict[node_id]["neighbours"][neighbour_id]["classes"] = []
+        i+=1
+    
+    json.dump(floor_dict,f)
+    
+# json_ to sql        
+
+def json_to_sql(file_path:str):
+    file = open(file_path)
+    data = json.load(file)
+    for (key,val) in data.items():
+        try :
+            cnt = sqlite3.connect(database)
+            cur = cnt.cursor()     
+            neighbours = val["neighbours"]
+            node_neighbour_str = json.dumps(neighbours)
+            print(node_neighbour_str)
+            query = '''insert into {} values('{}','{}')'''.format(table_name,key,node_neighbour_str)        
+            print(query)
+            cur.execute(query)
+
+        except sqlite3.Error as error:
+            print("Sqlite error : ",error)
+
+        finally:
+            if cnt:
+                cnt.commit()
+                cnt.close()
+    
+def create_table(table_name : str,database_path:str):
+    try: 
+        cnt = sqlite3.connect(database_path)
+        cur = cnt.cursor()
+        query = "create table "+table_name + "(node_id string,neighbour_data string);"
+        cur.execute(query)
+    except sqlite3.Error as error:
+        print("Sqlite error : ",error)
+    finally:
+        if cnt:
+            cur.close()
+            cnt.commit()
+            cnt.close()
+
+# create_table(table_name,database)

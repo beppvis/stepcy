@@ -1,0 +1,27 @@
+{
+  "node1": {
+    "neighbours": {
+      "node3": {
+        "cost": 40, "classes": []}, 
+      "node2": {
+        "cost": 20, "classes": []}}}, 
+  "node2": {
+    "neighbours": {
+      "node4": {
+        "cost": 20, "classes": []}, 
+      "node1": {
+        "cost": 10, "classes": []}}}, 
+  "node3": {
+    "neighbours": {
+      "node1": {
+        "cost": 40, "classes": []}, 
+      "node4": {
+        "cost": 10, "classes": []}}}, 
+  "node4": {
+    "neighbours": {
+      "node2": {
+        "cost": 20, "classes": []}, 
+      "node3": {
+        "cost": 10, "classes": []}}
+  }
+}

@@ -1,4 +1,4 @@
-from node_
+from classes_node import Node
 from node_db import add_node
 
 
