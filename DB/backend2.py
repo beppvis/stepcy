@@ -49,7 +49,7 @@ edges = []
 distances = {}
 
 # Get data from node_db
-data = node_db.get_data_all()
+data = node_db.get_data_all()   
 print(data)
 
 for record in data:
@@ -83,8 +83,7 @@ for i in range(len(shortest_path) - 1):
     print(f"Move from {current_node} to {next_node}: Go {direction}")
 
 
-# Layout for graph visualization
-pos = nx.spring_layout(G)
+pos=nx.spring_layout(G)
 
 # Draw the graph nodes and edges
 nx.draw_networkx_nodes(G, pos, node_size=1000, node_color='red', node_shape='o')
@@ -97,3 +96,4 @@ nx.draw_networkx_edges(G, pos, edgelist=path_edges, edge_color='blue', arrows=Tr
 
 # Display the graph
 ply.show()
+
