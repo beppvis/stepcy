@@ -42,12 +42,21 @@ def add_node(node:Node):
 #    print(node.id +" connectections : ")
 #   neighour_nums = int(input("Enter num of neighbour connections : "))
 
+<<<<<<< HEAD
 #    for i in range(1,neighour_nums + 1):
 #        neighbour_num = int(input("Enter neighbour num  : "))
 #        cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
 #        neighbour_id = "node"+str(neighbour_num)
 #        node.neighbours.append((neighbour_id,cost))
 #    add_node(node)
+=======
+    for i in range(1,neighour_nums + 1):
+        neighbour_num = int(input("Enter neighbour num  : "))
+        cost = int(input("Enter cost to neighbour {} to {}: ".format(node.id,neighbour_num)))
+        neighbour_id = "node"+str(neighbour_num)
+        node.neighbours.append((neighbour_id,cost))
+    add_node(node)
+>>>>>>> de0959bf1affb6b3184a02655d7af3829b2a3167
 
 def get_data_all():
     try :
