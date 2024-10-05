@@ -1,0 +1,93 @@
+{
+    "Node1": {
+        "neighbours": {
+            "node2": "cost",
+            "node3": " cost",
+        },
+        "classes": {
+            "node2": "classes",
+            "node3": "classes"
+
+        }
+    },
+    "Node2": {
+        "neighbours": {
+            "node2": "45",
+            "node3": "55",
+        },
+        "classes": {
+            "node2": "F302,G454,K525",
+            "node3": "P302,H454,J525"
+
+        }
+    },
+    "Node3": {
+        "neighbours": {
+            "node2": "cost",
+            "node5": "cost",
+        },
+        "classes": {
+            "node2": "classes",
+            "node3": "classes"
+
+        }
+    },
+    "Node2": {
+        "neighbours": {
+            "node2": "45",
+            "node3": "55",
+        },
+        "classes": {
+            "node2": "F302,G454,K525",
+            "node3": "P302,H454,J525"
+
+        }
+    }
+    {
+        "Node1": {
+            "neighbours": {
+                "node2": "cost",
+                "node3": " cost",
+            },
+            "classes": {
+                "node2": "classes",
+                "node3": "classes"
+    
+            }
+        },
+        "Node2": {
+            "neighbours": {
+                "node2": "45",
+                "node3": "55",
+            },
+            "classes": {
+                "node2": "F302,G454,K525",
+                "node3": "P302,H454,J525"
+    
+            }
+        },
+        "Node3": {
+            "neighbours": {
+                "node2": "cost",
+                "node5": "cost",
+            },
+            "classes": {
+                "node2": "classes",
+                "node3": "classes"
+    
+            }
+        },
+        "Node2": {
+            "neighbours": {
+                "node2": "45",
+                "node3": "55",
+            },
+            "classes": {
+                "node2": "F302,G454,K525",
+                "node3": "P302,H454,J525"
+    
+            }
+        }
+    }
+}    
+    
