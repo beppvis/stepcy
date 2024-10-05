@@ -1,16 +1,20 @@
 
-
 function test_connection(){
-  req_button.addEventListener("click",()=>{
+  //testing connection
+  fetch("http://127.0.0.1:5000/get-path?start=a&to=b")
 
-    fetch("http://0.0.0.0:8100/gamer")
-    .then((message)=> {
-      console.log(message)
-    })
-    .catch((error)=>{
-      console.log(error)
+  .then((message)=> {
+    const message_promise = message.json();
+    message_promise
+    .then((data)=>{
+      console.log(data["Hello"]);
     });
-  
+  })
+  .catch((error)=>{
+    console.log(error)
+  })
+  .finally(()=>{
+    console.log("Ahhh")
   });
 
 }
