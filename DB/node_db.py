@@ -76,6 +76,7 @@ def get_data_all():
                 n_data = {}
                 n_data[key] = val
                 neighbours.append(n_data)
+            # print(neighbours)
             data.append((node_id,neighbours))
         return data
 
@@ -104,6 +105,7 @@ def gen_json_file():
             floor_dict[node_id]["neighbours"][neighbour_id] ={}
             floor_dict[node_id]["neighbours"][neighbour_id]["cost"] = 0
             floor_dict[node_id]["neighbours"][neighbour_id]["classes"] = []
+            floor_dict[node_id]["neighbours"][neighbour_id]["angle"] = 90 
         i+=1
     
     json.dump(floor_dict,f)
@@ -146,3 +148,5 @@ def create_table(table_name : str,database_path:str):
             cnt.commit()
             cnt.close()
 
+if __name__ =="__main__":
+    gen_json_file()
